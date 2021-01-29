@@ -28,6 +28,17 @@ namespace ASP.NET_Blog
 
             app.UseRouting();
 
+
+            app.Use(async (context, next) =>
+            {
+                if (context.Request.Path.Value.StartsWith("/hello"))
+                {
+                    await context.Response.WriteAsync("How are you");
+                }
+               
+                await next();
+            });
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapGet("/", async context =>
@@ -35,6 +46,8 @@ namespace ASP.NET_Blog
                     await context.Response.WriteAsync("Hello  ASP.NET core");
                 });
             });
+
+
         }
     }
 }
