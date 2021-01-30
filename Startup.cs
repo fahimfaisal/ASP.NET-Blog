@@ -22,15 +22,18 @@ namespace ASP.NET_Blog
         }
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddTransient<FeatureToggles>(x => new FeatureToggles { 
+              EnableDeveloperExceptions = configuration.GetValue<bool>("FeatureToggles:EnableDeveloperExceptions")
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, FeatureToggles features)
         {
 
             //app.UseExceptionHandler("/error.html");
 
-            if (configuration.GetValue<bool>("FeatureToggles:EnableDeveloperExceptions"))
+            if (features.EnableDeveloperExceptions)
             {
                 app.UseDeveloperExceptionPage();
                 
