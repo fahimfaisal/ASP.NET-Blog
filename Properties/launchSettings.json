@@ -12,7 +12,6 @@
       "commandName": "IISExpress",
       "launchBrowser": true,
       "environmentVariables": {
-        "EnableDeveloperExceptions": "false",
         "ASPNETCORE_ENVIRONMENT": "Production"
       }
     },

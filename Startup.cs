@@ -30,7 +30,7 @@ namespace ASP.NET_Blog
 
             //app.UseExceptionHandler("/error.html");
 
-            if (configuration.GetValue<bool>("EnableDeveloperExceptions"))
+            if (configuration.GetValue<bool>("FeatureToggles:EnableDeveloperExceptions"))
             {
                 app.UseDeveloperExceptionPage();
                 
